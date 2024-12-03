@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen sobre Metodologías en Programación y Git</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        nav {
+            background-color: #444;
+            overflow: hidden;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            float: left;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .tabs {
+            margin: 20px 0;
+        }
+        .tabs button {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 25%;
+            text-align: center;
+        }
+        .tabs button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Resumen sobre Metodologías en Programación y Git</h1>
+    </header>
+
+    <nav>
+        <a href="#metodologias" onclick="showTab('metodologias')">Metodologías</a>
+        <a href="#git" onclick="showTab('git')">Git y GitHub</a>
+        <a href="#html" onclick="showTab('html')">Código HTML</a>
+        <a href="#python" onclick="showTab('python')">Código Python - Base de Datos</a>
+    </nav>
+
+    <div class="container">
+        <div class="tab-content" id="metodologias">
+            <h2>Metodologías en Programación</h2>
+            <p>Las metodologías son enfoques estructurados para gestionar el proceso de desarrollo de software. A continuación, te mostramos algunas de las más utilizadas:</p>
+            <h3>1. Metodología Ágil (Agile)</h3>
+            <p>La metodología ágil se enfoca en entregar resultados rápidamente a través de ciclos iterativos y colaborativos. En lugar de esperar a que todo el proyecto esté completo, se desarrollan pequeñas partes del proyecto y se presentan frecuentemente al cliente.</p>
+            <ul>
+                <li><strong>Iteraciones cortas:</strong> Sprints o ciclos de desarrollo cortos.</li>
+                <li><strong>Colaboración constante:</strong> Trabajo continuo con el cliente.</li>
+                <li><strong>Adaptabilidad:</strong> Cambio continuo según las necesidades.</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="git">
+            <h2>Git y GitHub</h2>
+            <p><strong>Git</strong> es un sistema de control de versiones distribuido que permite a los desarrolladores gestionar el código fuente y realizar cambios de forma controlada. <strong>GitHub</strong> es una plataforma que permite almacenar y colaborar en proyectos que usan Git.</p>
+            <h3>Comandos Básicos de Git</h3>
+            <ul>
+                <li><strong>git init:</strong> Inicializa un repositorio local en tu directorio.</li>
+                <li><strong>git clone [url]:</strong> Clona un repositorio remoto en tu máquina local.</li>
+                <li><strong>git add .:</strong> Añade todos los cambios al área de preparación.</li>
+                <li><strong>git commit -m "mensaje":</strong> Registra un cambio en el repositorio.</li>
+                <li><strong>git push:</strong> Sube los cambios al repositorio remoto.</li>
+                <li><strong>git pull:</strong> Baja los cambios del repositorio remoto.</li>
+                <li><strong>git branch [nombre]:</strong> Crea una nueva rama.</li>
+                <li><strong>git merge [rama]:</strong> Fusiona una rama en la rama actual.</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="html">
+            <h2>Código HTML Básico</h2>
+            <p>HTML (HyperText Markup Language) es el lenguaje estándar utilizado para crear páginas web. A continuación, se muestra la estructura básica de una página HTML.</p>
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Mi Primera Página&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Bienvenidos a mi página web&lt;/h1&gt;
+        &lt;p&gt;Este es un párrafo en HTML.&lt;/p&gt;
+        &lt;a href="https://www.ejemplo.com"&gt;Ir a un sitio web&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+        </div>
+
+        <div class="tab-content" id="python">
+            <h2>Código Python - Creación de Base de Datos</h2>
+            <p>A continuación se muestra el código Python para crear una base de datos llamada "autoconocimiento.db" y una tabla para el seguimiento del presupuesto:</p>
+            <pre>
+import sqlite3 as sql
+
+def createDB():
+    conn = sql.connect("autoconocimiento.db")
+    print("Base de datos de autoconocimiento creada")
+    conn.close()
+
+def createTable():
+    conn = sql.connect("autoconocimiento.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS budget_tracking (
+            budget_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            planning_id INTEGER,
+            amount_spent DECIMAL(10,2) DEFAULT 0,
+            amount_remaining DECIMAL(10,2),
+            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (planning_id) REFERENCES experience_planning(planning_id)
+        );        
+    """)
+    conn.commit()
+    conn.close()
+
+if __name__ == "__main__":
+    createDB()
+    createTable()
+            </pre>
+            <h3>Imagen desde GitHub:</h3>
+            <img src="Imagen.png" alt="Descripción de la imagen">
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            let tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            let activeTab = document.getElementById(tabName);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        window.onload = function() {
+            showTab('metodologias');
+        };
+    </script>
+
+</body>
+</html>
